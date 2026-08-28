@@ -1,16 +1,5 @@
 # 💍 Wedding Invitation — Aryan & Yasmin
-
-wedding-invitation/
-├── index.html        ← Halaman utama
-├── style.css         ← Semua styling & animasi
-├── script.js         ← Semua fitur interaktif (24 modul)
-├── README.md         ← Panduan ini
-└── assets/
-    ├── cover.jpg     ← Foto pasangan (cover)
-    ├── groom.jpg     ← Foto mempelai pria
-    ├── bride.jpg     ← Foto mempelai wanita
-    └── hero.jpg      ← Foto background hero
-```
+By Ahmad Riko Dyansyah
 
 ---
 
