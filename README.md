@@ -1,11 +1,5 @@
 # 💍 Wedding Invitation — Aryan & Yasmin
-## Tema: Emerald Gold Botanical ✨ (Versi 2.0 Premium)
 
----
-
-## 📁 Struktur Folder
-
-```
 wedding-invitation/
 ├── index.html        ← Halaman utama
 ├── style.css         ← Semua styling & animasi
