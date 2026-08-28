@@ -1,4 +1,4 @@
-# 💍 Wedding Invitation — Aryan & Yasmin
+# 💍 WO Card Digital V.4
 By Ahmad Riko Dyansyah
 
 ## 🚀 Cara Penggunaan
