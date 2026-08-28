@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>The Wedding of Aryan &amp; Yasmin</title>
+  <meta name="description" content="Undangan Pernikahan Aryan Mahardika & Yasmin Aurellia — 15 Maret 2026">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel+Decorative:wght@400;700&family=Jost:wght@300;400;500;600&family=Amiri:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== LOADING SCREEN ===================== -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-ring"></div>
+    <div class="loader-ring loader-ring-2"></div>
+    <div class="loader-heart">❤</div>
+    <div class="loader-names script">Aryan &amp; Yasmin</div>
+    <div class="loader-text">Memuat Undangan...</div>
+    <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+  </div>
+</div>
+
+<!-- ===================== COVER / GATE ===================== -->
+<div id="cover">
+  <canvas id="petalCanvas"></canvas>
+  <div class="cover-glow"></div>
+
+  <div class="cover-top reveal-cover">
+    <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+    <div class="cover-label">— Undangan Pernikahan —</div>
+  </div>
+
+  <div class="cover-frame-wrap reveal-cover" style="animation-delay:.3s">
+    <div class="cover-frame">
+      <img src="assets/cover.jpg" alt="Aryan & Yasmin" class="cover-img">
+      <div class="cover-frame-glow"></div>
+    </div>
+    <div class="cover-frame-rings">
+      <div class="ring r1"></div>
+      <div class="ring r2"></div>
+    </div>
+  </div>
+
+  <div class="cover-bottom reveal-cover" style="animation-delay:.6s">
+    <div class="cover-names script">Aryan <em>&amp;</em> Yasmin</div>
+    <div class="cover-date-badge">
+      <span>15</span><span class="sep">·</span><span>03</span><span class="sep">·</span><span>2026</span>
+    </div>
+    <div class="cover-guest-box">
+      <div class="cg-label">Kepada Yth. Bapak/Ibu/Saudara/i</div>
+      <div class="cg-name" id="guestName">Tamu Undangan</div>
+    </div>
+    <button class="btn-open" id="openBtn">
+      <span class="btn-open-icon">✉</span>
+      <span class="btn-open-text">Buka Undangan</span>
+      <span class="btn-open-ripple"></span>
+    </button>
+  </div>
+
+  <button class="music-fab cover-music" id="coverMusicBtn" title="Toggle Musik" aria-label="Toggle Musik">
+    <span class="music-icon">♪</span>
+  </button>
+</div>
+
+<!-- Background music -->
+<audio id="bgMusic" loop preload="none">
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ===================== MAIN APP ===================== -->
+<main class="app" id="app" aria-hidden="true">
+
+  <!-- Progress bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Navigation dots -->
+  <nav class="nav-dots" id="navDots" aria-label="Navigasi Section">
+    <button class="dot active" data-section="hero" title="Hero"></button>
+    <button class="dot" data-section="intro" title="Intro"></button>
+    <button class="dot" data-section="couple" title="Mempelai"></button>
+    <button class="dot" data-section="quran" title="Ayat"></button>
+    <button class="dot" data-section="acara" title="Acara"></button>
+    <button class="dot" data-section="rundown" title="Rundown"></button>
+    <button class="dot" data-section="story" title="Kisah"></button>
+    <button class="dot" data-section="gallery" title="Galeri"></button>
+    <button class="dot" data-section="ucapan" title="Ucapan"></button>
+    <button class="dot" data-section="gift" title="Hadiah"></button>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section id="hero" data-nav="0">
+    <div class="hero-parallax" id="heroBg">
+      <img src="assets/hero.jpg" alt="Garden Wedding" class="hero-bg-img" id="heroBgImg">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow animate-fadeup" style="animation-delay:.2s">The Wedding Of</div>
+      <h1 class="hero-title script animate-fadeup" style="animation-delay:.4s">
+        Aryan <span class="amp-gold">&amp;</span> Yasmin
+      </h1>
+      <div class="hero-subtitle animate-fadeup" style="animation-delay:.6s">Sabtu, 15 Maret 2026 · Jakarta Selatan</div>
+
+      <div class="countdown animate-fadeup" id="countdown" style="animation-delay:.8s">
+        <div class="cd-unit"><div class="cd-flip" id="cd-day"><span>00</span></div><div class="cd-label">Hari</div></div>
+        <div class="cd-colon">:</div>
+        <div class="cd-unit"><div class="cd-flip" id="cd-hour"><span>00</span></div><div class="cd-label">Jam</div></div>
+        <div class="cd-colon">:</div>
+        <div class="cd-unit"><div class="cd-flip" id="cd-min"><span>00</span></div><div class="cd-label">Menit</div></div>
+        <div class="cd-colon">:</div>
+        <div class="cd-unit"><div class="cd-flip" id="cd-sec"><span>00</span></div><div class="cd-label">Detik</div></div>
+      </div>
+
+      <a href="#intro" class="scroll-hint animate-fadeup" id="scrollHint" style="animation-delay:1s">
+        <div class="scroll-hint-text">Gulir ke bawah</div>
+        <div class="scroll-hint-arrow">
+          <div class="sha-inner"></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== INTRO ========== -->
+  <section id="intro" class="section-pad" data-nav="1">
+    <div class="leaves-bg leaves-top"></div>
+    <div class="section-badge reveal">Our Wedding</div>
+    <h2 class="section-heading reveal">Assalamu'alaikum<br><span class="gold">Warahmatullahi Wabarakatuh</span></h2>
+    <p class="intro-body reveal">Dengan memohon rahmat dan ridha Allah Subhanahu Wa Ta'ala, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir dan turut berbahagia di hari pernikahan kami.</p>
+    <div class="intro-photo-wrap reveal">
+      <div class="intro-arch-photo">
+        <img src="assets/cover.jpg" alt="Aryan & Yasmin bersama">
+        <div class="arch-shimmer"></div>
+      </div>
+      <div class="intro-photo-caption script">Aryan &amp; Yasmin</div>
+    </div>
+    <div class="leaves-bg leaves-bottom"></div>
+  </section>
+
+  <!-- ========== COUPLE ========== -->
+  <section id="couple" class="section-pad bg-cream" data-nav="2">
+    <div class="section-badge reveal">Mempelai</div>
+    <h2 class="section-heading reveal">Dengan Penuh Cinta</h2>
+    <div class="couple-grid">
+
+      <!-- GROOM -->
+      <div class="couple-card reveal" style="animation-delay:.1s">
+        <div class="couple-arch">
+          <img src="assets/groom.jpg" alt="The Groom — Aryan Mahardika" class="couple-img groom-img">
+          <div class="couple-arch-shine"></div>
+        </div>
+        <div class="role-pill gold-pill">The Groom</div>
+        <h3 class="couple-name">Aryan Mahardika</h3>
+        <p class="couple-meta">Putra Pertama dari<br>
+          <strong>Bapak Drs. Hendra Wijaya</strong><br>
+          &amp; <strong>Ibu Siti Nurhaliza</strong>
+        </p>
+        <p class="couple-city">📍 Jakarta Selatan</p>
+        <a class="couple-ig hover-lift" href="#" onclick="return false">♡ @aryan.mahardika</a>
+      </div>
+
+      <div class="couple-amp-divider reveal">
+        <div class="divider-line"></div>
+        <div class="amp-circle"><span class="script">&amp;</span></div>
+        <div class="divider-line"></div>
+      </div>
+
+      <!-- BRIDE -->
+      <div class="couple-card reveal" style="animation-delay:.2s">
+        <div class="couple-arch">
+          <img src="assets/bride.jpg" alt="The Bride — Yasmin Aurellia" class="couple-img bride-img">
+          <div class="couple-arch-shine"></div>
+        </div>
+        <div class="role-pill rose-pill">The Bride</div>
+        <h3 class="couple-name">Yasmin Aurellia</h3>
+        <p class="couple-meta">Putri Pertama dari<br>
+          <strong>Bapak Prof. Ahmad Fauzi</strong><br>
+          &amp; <strong>Ibu Dr. Rahayu Pratiwi</strong>
+        </p>
+        <p class="couple-city">📍 Bandung</p>
+        <a class="couple-ig hover-lift" href="#" onclick="return false">♡ @yasmin.aurellia</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== QUR'AN / SAVE THE DATE ========== -->
+  <section id="quran" class="section-pad bg-emerald" data-nav="3">
+    <div class="quran-sparkles" id="quranSparkles"></div>
+    <div class="quran-decor-top"></div>
+    <div class="std-label script reveal">Save The Date</div>
+    <div class="quran-ornament reveal"></div>
+    <p class="arabic-text reveal">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
+    <p class="arabic-trans reveal">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang."</p>
+    <div class="surah-ref reveal">— Q.S. Ar-Rum : 21 —</div>
+    <div class="quran-decor-bottom"></div>
+  </section>
+
+  <!-- ========== ACARA ========== -->
+  <section id="acara" class="section-pad" data-nav="4">
+    <div class="section-badge reveal">Detail Acara</div>
+    <h2 class="section-heading reveal">Acara Pernikahan</h2>
+    <p class="section-sub reveal">Dengan penuh kebahagiaan, kami mengundang Anda hadir di:</p>
+    <div class="acara-grid">
+
+      <div class="acara-card reveal hover-lift" style="animation-delay:.1s">
+        <div class="acara-card-top">
+          <div class="acara-icon">🕌</div>
+          <div class="acara-type script">Akad Nikah</div>
+        </div>
+        <div class="acara-divider-line"></div>
+        <div class="acara-date-block">
+          <div class="acara-month">MARET</div>
+          <div class="acara-day">15</div>
+          <div class="acara-year">2026</div>
+        </div>
+        <div class="acara-time">⏰ Pukul 08.00 — 10.00 WIB</div>
+        <div class="acara-loc">📍 Masjid Al-Ikhlas<br>Jl. Mawar Indah No. 12<br>Jakarta Selatan</div>
+        <a class="btn-maps hover-lift" href="https://maps.google.com/?q=Jakarta+Selatan" target="_blank" rel="noopener">
+          🗺 Lihat di Maps
+        </a>
+        <button class="btn-cal" onclick="addToCalendar('Akad Nikah Aryan & Yasmin','Masjid Al-Ikhlas, Jakarta Selatan','20260315T080000','20260315T100000')">
+          📅 Tambah ke Kalender
+        </button>
+      </div>
+
+      <div class="acara-card reveal hover-lift" style="animation-delay:.2s">
+        <div class="acara-card-top">
+          <div class="acara-icon">🥂</div>
+          <div class="acara-type script">Resepsi Pernikahan</div>
+        </div>
+        <div class="acara-divider-line"></div>
+        <div class="acara-date-block">
+          <div class="acara-month">MARET</div>
+          <div class="acara-day">15</div>
+          <div class="acara-year">2026</div>
+        </div>
+        <div class="acara-time">⏰ Pukul 11.00 — 15.00 WIB</div>
+        <div class="acara-loc">📍 The Botanical Grand Ballroom<br>Jl. Sudirman No. 88<br>Jakarta Selatan</div>
+        <a class="btn-maps hover-lift" href="https://maps.google.com/?q=Jl+Sudirman+Jakarta" target="_blank" rel="noopener">
+          🗺 Lihat di Maps
+        </a>
+        <button class="btn-cal" onclick="addToCalendar('Resepsi Aryan & Yasmin','The Botanical Grand Ballroom','20260315T110000','20260315T150000')">
+          📅 Tambah ke Kalender
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== RUNDOWN ========== -->
+  <section id="rundown" class="section-pad bg-cream" data-nav="5">
+    <div class="section-badge reveal">Jadwal</div>
+    <h2 class="section-heading reveal">Susunan Acara</h2>
+    <div class="timeline-wrap">
+      <div class="tl-line"></div>
+      <div class="tl-item reveal" style="animation-delay:.05s">
+        <div class="tl-time">08.00</div>
+        <div class="tl-node"><div class="tl-dot-inner"></div></div>
+        <div class="tl-body">
+          <div class="tl-title">Persiapan &amp; Penyambutan</div>
+          <div class="tl-desc">Keluarga besar bersiap dan menyambut tamu undangan dengan penuh kehangatan.</div>
+        </div>
+      </div>
+      <div class="tl-item reveal" style="animation-delay:.1s">
+        <div class="tl-time">08.30</div>
+        <div class="tl-node"><div class="tl-dot-inner"></div></div>
+        <div class="tl-body">
+          <div class="tl-title">Akad Nikah</div>
+          <div class="tl-desc">Prosesi ijab kabul dipimpin penghulu, disaksikan keluarga dan para saksi.</div>
+        </div>
+      </div>
+      <div class="tl-item reveal" style="animation-delay:.15s">
+        <div class="tl-time">10.30</div>
+        <div class="tl-node"><div class="tl-dot-inner"></div></div>
+        <div class="tl-body">
+          <div class="tl-title">Foto Bersama Keluarga</div>
+          <div class="tl-desc">Sesi foto bersama keluarga inti dan para tamu undangan spesial.</div>
+        </div>
+      </div>
+      <div class="tl-item reveal" style="animation-delay:.2s">
+        <div class="tl-time">11.00</div>
+        <div class="tl-node"><div class="tl-dot-inner"></div></div>
+        <div class="tl-body">
+          <div class="tl-title">Resepsi Pernikahan</div>
+          <div class="tl-desc">Sambutan keluarga, hiburan musik live, dan jamuan makan siang bersama.</div>
+        </div>
+      </div>
+      <div class="tl-item reveal" style="animation-delay:.25s">
+        <div class="tl-time">13.00</div>
+        <div class="tl-node"><div class="tl-dot-inner"></div></div>
+        <div class="tl-body">
+          <div class="tl-title">Hiburan &amp; Pentas Seni</div>
+          <div class="tl-desc">Penampilan musik live, tarian tradisional, dan atraksi spesial dari keluarga.</div>
+        </div>
+      </div>
+      <div class="tl-item reveal" style="animation-delay:.3s">
+        <div class="tl-time">14.30</div>
+        <div class="tl-node"><div class="tl-dot-inner"></div></div>
+        <div class="tl-body">
+          <div class="tl-title">Penutup &amp; Ramah Tamah</div>
+          <div class="tl-desc">Momen terakhir bersama, sesi foto bebas, dan pelepasan tamu undangan.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LOVE STORY ========== -->
+  <section id="story" class="section-pad" data-nav="6">
+    <div class="section-badge reveal">Our Journey</div>
+    <h2 class="section-heading reveal">Kisah Cinta Kami</h2>
+    <div class="story-list">
+
+      <div class="story-item reveal" style="animation-delay:.05s">
+        <div class="story-img-box">
+          <img src="assets/hero.jpg" alt="Pertemuan Pertama" class="story-img">
+          <div class="story-overlay"><span class="story-num">01</span></div>
+        </div>
+        <div class="story-content">
+          <div class="story-year gold">2019</div>
+          <h3 class="story-title">Pertemuan Pertama</h3>
+          <p class="story-desc">Sebuah pertemuan tak terduga di seminar nasional memperkenalkan Aryan kepada Yasmin — awal dari sebuah cerita yang tak terlupakan.</p>
+        </div>
+      </div>
+
+      <div class="story-item story-item-rev reveal" style="animation-delay:.1s">
+        <div class="story-img-box">
+          <img src="assets/cover.jpg" alt="Menuju Keseriusan" class="story-img">
+          <div class="story-overlay"><span class="story-num">02</span></div>
+        </div>
+        <div class="story-content">
+          <div class="story-year gold">2022</div>
+          <h3 class="story-title">Menuju Keseriusan</h3>
+          <p class="story-desc">Setelah bertahun-tahun menjalin hubungan penuh kasih, keduanya semakin yakin untuk melangkah ke jenjang yang lebih serius bersama restu orang tua.</p>
+        </div>
+      </div>
+
+      <div class="story-item reveal" style="animation-delay:.15s">
+        <div class="story-img-box">
+          <img src="assets/bride.jpg" alt="Lamaran" class="story-img">
+          <div class="story-overlay"><span class="story-num">03</span></div>
+        </div>
+        <div class="story-content">
+          <div class="story-year gold">2025</div>
+          <h3 class="story-title">Lamaran Resmi</h3>
+          <p class="story-desc">Di bawah langit berbintang, Aryan melamar Yasmin dengan sepenuh hati. Momen yang akan diingat seumur hidup.</p>
+        </div>
+      </div>
+
+      <div class="story-item story-item-rev reveal" style="animation-delay:.2s">
+        <div class="story-img-box">
+          <img src="assets/groom.jpg" alt="Hari Bahagia" class="story-img">
+          <div class="story-overlay"><span class="story-num">04</span></div>
+        </div>
+        <div class="story-content">
+          <div class="story-year gold">2026</div>
+          <h3 class="story-title">Hari Yang Dinantikan</h3>
+          <p class="story-desc">Kini dengan penuh syukur, mereka mengajak Anda untuk turut merayakan hari istimewa menuju pelaminan impian.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== GALLERY ========== -->
+  <section id="gallery" class="section-pad bg-cream" data-nav="7">
+    <div class="section-badge reveal">Galeri</div>
+    <h2 class="section-heading reveal">Momen Bersama</h2>
+    <div class="gallery-masonry reveal">
+      <div class="gal-item tall" data-src="assets/cover.jpg"><img src="assets/cover.jpg" alt="Gallery 1"><div class="gal-hover-overlay"><span>🔍</span></div></div>
+      <div class="gal-item" data-src="assets/groom.jpg"><img src="assets/groom.jpg" alt="Gallery 2"><div class="gal-hover-overlay"><span>🔍</span></div></div>
+      <div class="gal-item" data-src="assets/bride.jpg"><img src="assets/bride.jpg" alt="Gallery 3"><div class="gal-hover-overlay"><span>🔍</span></div></div>
+      <div class="gal-item wide" data-src="assets/hero.jpg"><img src="assets/hero.jpg" alt="Gallery 4"><div class="gal-hover-overlay"><span>🔍</span></div></div>
+      <div class="gal-item" data-src="assets/bride.jpg"><img src="assets/bride.jpg" alt="Gallery 5"><div class="gal-hover-overlay"><span>🔍</span></div></div>
+      <div class="gal-item" data-src="assets/groom.jpg"><img src="assets/groom.jpg" alt="Gallery 6"><div class="gal-hover-overlay"><span>🔍</span></div></div>
+    </div>
+  </section>
+
+  <!-- ========== LIGHTBOX ========== -->
+  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Galeri Foto">
+    <button class="lb-close" id="lbClose" aria-label="Tutup">&times;</button>
+    <button class="lb-prev" id="lbPrev" aria-label="Sebelumnya">&#8249;</button>
+    <div class="lb-img-wrap"><img id="lbImg" src="" alt="Gallery Photo"></div>
+    <button class="lb-next" id="lbNext" aria-label="Berikutnya">&#8250;</button>
+    <div class="lb-counter" id="lbCounter"></div>
+  </div>
+
+  <!-- ========== UCAPAN / RSVP ========== -->
+  <section id="ucapan" class="section-pad" data-nav="8">
+    <div class="section-badge reveal">Wishes</div>
+    <h2 class="section-heading reveal">Ucapan &amp; Doa</h2>
+    <p class="section-sub reveal">Berikan doa dan ucapan terbaik untuk kami ❤</p>
+
+    <div class="rsvp-card reveal">
+      <form id="rsvpForm" class="rsvp-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fName">Nama Lengkap</label>
+            <input type="text" id="fName" placeholder="Nama Anda..." required autocomplete="name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fAttend">Konfirmasi Kehadiran</label>
+            <div class="select-wrap">
+              <select id="fAttend">
+                <option value="hadir">✅ Insya Allah Hadir</option>
+                <option value="tidak">❌ Belum Bisa Hadir</option>
+                <option value="ragu">🤔 Masih Ragu</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fMsg">Pesan &amp; Doa</label>
+            <textarea id="fMsg" rows="4" placeholder="Tulis ucapan dan doa terbaik Anda..." required></textarea>
+            <div class="char-count" id="charCount">0 / 300</div>
+          </div>
+        </div>
+        <button type="submit" class="btn-send hover-lift">
+          <span>💌 Kirim Ucapan</span>
+          <div class="btn-shine"></div>
+        </button>
+      </form>
+    </div>
+
+    <div class="wishes-container" id="wishContainer">
+      <!-- populated by JS -->
+    </div>
+  </section>
+
+  <!-- ========== GIFT ========== -->
+  <section id="gift" class="section-pad bg-cream" data-nav="9">
+    <div class="section-badge reveal">Gift</div>
+    <h2 class="section-heading reveal">Amplop Digital</h2>
+    <p class="section-sub reveal">Kehadiran dan doa Anda adalah hadiah terbesar. Namun jika ingin memberi hadiah:</p>
+    <div class="gift-grid">
+      <div class="gift-card reveal hover-lift" style="animation-delay:.05s">
+        <div class="gift-bank-logo">🏦</div>
+        <div class="gift-bank-name">Bank BCA</div>
+        <div class="gift-acc-num" id="acc1">1234 5678 9012</div>
+        <div class="gift-acc-holder">a.n. Aryan Mahardika</div>
+        <button class="btn-copy" onclick="copyAcc('acc1','1234567890123')">
+          <span class="copy-icon">📋</span> Salin Nomor
+        </button>
+      </div>
+      <div class="gift-card reveal hover-lift" style="animation-delay:.1s">
+        <div class="gift-bank-logo">🏦</div>
+        <div class="gift-bank-name">Bank Mandiri</div>
+        <div class="gift-acc-num" id="acc2">0987 6543 2109</div>
+        <div class="gift-acc-holder">a.n. Yasmin Aurellia</div>
+        <button class="btn-copy" onclick="copyAcc('acc2','0987654321098')">
+          <span class="copy-icon">📋</span> Salin Nomor
+        </button>
+      </div>
+    </div>
+    <div class="gift-note reveal">
+      Konfirmasi transfer bisa dikirim via WhatsApp ke <a href="https://wa.me/6281234567890" target="_blank" class="wa-link">+62 812-3456-7890</a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer id="footer" class="bg-emerald">
+    <div class="footer-wave">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,40 C360,120 1080,0 1440,80 L1440,0 L0,0 Z" fill="#faf7f2"/></svg>
+    </div>
+    <div class="footer-body">
+      <div class="footer-petals" id="footerPetals"></div>
+      <div class="footer-names script">Aryan &amp; Yasmin</div>
+      <div class="footer-date gold">15 Maret 2026</div>
+      <div class="footer-ornament">
+        <svg width="160" height="12" viewBox="0 0 160 12"><line x1="0" y1="6" x2="68" y2="6" stroke="#c9a84c" stroke-width="1"/><circle cx="80" cy="6" r="4" fill="none" stroke="#c9a84c" stroke-width="1"/><line x1="92" y1="6" x2="160" y2="6" stroke="#c9a84c" stroke-width="1"/></svg>
+      </div>
+      <p class="footer-quote">"Barangsiapa yang bersyukur, maka sesungguhnya dia bersyukur untuk dirinya sendiri."</p>
+      <p class="footer-credit">Made with ❤ &middot; Wedding Invitation 2026</p>
+    </div>
+  </footer>
+
+</main><!-- /app -->
+
+<!-- Floating controls -->
+<div class="fab-cluster" id="fabCluster">
+  <button class="fab fab-music" id="appMusicBtn" title="Toggle Musik" aria-label="Toggle Musik">♪</button>
+  <button class="fab fab-top"   id="backToTop"   title="Ke Atas"      aria-label="Kembali ke atas">↑</button>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
