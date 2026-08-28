@@ -1,58 +1,6 @@
 # 💍 Wedding Invitation — Aryan & Yasmin
 By Ahmad Riko Dyansyah
 
----
-
-## 🎨 Tema & Warna
-
-| Komponen | Warna |
-|----------|-------|
-| Background Utama | Emerald Dark `#0d2b1e` |
-| Aksen Gold | `#c9a84c` → `#e2c87a` |
-| Background Cream | `#faf7f2` |
-| Font Script | Cormorant Garamond Italic |
-| Font Dekoratif | Cinzel Decorative |
-
----
-
-## ✨ Fitur Lengkap
-
-### 🎬 Animasi & Visual
-- **Loading Screen** — Ring spinner + progress bar animasi
-- **Canvas Petal Rain** — Partikel emas melayang di cover
-- **Parallax Hero** — Efek kedalaman saat scroll
-- **Flip Countdown** — Timer animasi flip seperti papan skor
-- **Shimmer Effect** — Kilau cahaya di semua foto
-- **Sparkle Particles** — Bintang animasi di section Qur'an
-- **Footer Petals** — Daun/kelopak mengambang naik
-- **Hero Particles** — Partikel ambient di hero section
-- **Cursor Glow** — Cahaya mengikuti kursor (desktop)
-- **Reveal on Scroll** — Setiap elemen muncul saat digulir
-- **Typing Effect** — Teks mengetik di hero subtitle
-- **3D Tilt Cards** — Kartu miring mengikuti mouse
-
-### 📱 UI/UX
-- **Loading Screen** animasi sebelum konten tampil
-- **Cover Gate** dengan frame foto melengkung elegan
-- **Navigation Dots** — Indikator posisi scroll di kanan
-- **Progress Bar** — Garis progress di atas halaman
-- **Floating FABs** — Tombol musik & kembali ke atas
-- **Gallery Lightbox** — Foto fullscreen + swipe + keyboard
-- **RSVP Form** — Validasi + counter karakter
-- **Wishes Live** — Ucapan muncul langsung tanpa reload
-- **Copy Rekening** — Satu klik salin nomor
-- **Add to Calendar** — Export ke Google Calendar
-- **Toast Notification** — Popup konfirmasi aksi
-
-### 🔗 Fitur Teknis
-- **URL Personalisasi**: `?to=NamaTamu`
-- **Background Music** player dengan toggle
-- **Responsive** mobile-first
-- **Accessibility** (ARIA, keyboard nav)
-- **prefers-reduced-motion** untuk aksesibilitas
-
----
-
 ## 🚀 Cara Penggunaan
 
 ### Buka Langsung
