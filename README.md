@@ -1,7 +1,7 @@
 # 💍 WO Card Digital V.4
 By Ahmad Riko Dyansyah
 
-## 🚀 Cara Penggunaan
+##  Cara Penggunaan
 
 ### Buka Langsung
 Buka `index.html` di browser mana saja — tidak perlu server!
