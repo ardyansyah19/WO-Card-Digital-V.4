@@ -1,4 +1,4 @@
-# 💍 WO Card Digital V.4
+#  WO Card Digital V.4
 By Ahmad Riko Dyansyah
 
 ##  Cara Penggunaan
